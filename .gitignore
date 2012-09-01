@@ -1,0 +1,10 @@
+libgpredict.a
+sgpsdp/sgp4sdp4.o
+sgpsdp/sgp_in.o
+sgpsdp/sgp_math.o
+sgpsdp/sgp_obs.o
+sgpsdp/sgp_time.o
+sgpsdp/solar.o
+sgpsdp/test-001
+sgpsdp/test-002
+time-tools.o
