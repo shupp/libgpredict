@@ -1,5 +1,5 @@
 all: all-components libgpredict.a
-all-components: sgpsdp/sgp_time.o sgpsdp/sgp_math.o sgpsdp/sgp4sdp4.o sgpsdp/sgp_in.o sgpsdp/sgp_obs.o sgpsdp/solar.o time-tools.o
+all-components: sgpsdp/sgp_time.o sgpsdp/sgp_math.o sgpsdp/sgp4sdp4.o sgpsdp/sgp_in.o sgpsdp/sgp_obs.o sgpsdp/solar.o time-tools.o predict-tools.o
 sgpsdp/solar.o:
 	gcc -c sgpsdp/solar.c -Wall -o sgpsdp/solar.o `pkg-config --cflags --libs glib-2.0` -lm
 sgpsdp/sgp_obs.o:
@@ -12,6 +12,8 @@ sgpsdp/sgp_math.o:
 	gcc -c sgpsdp/sgp_math.c -Wall -o sgpsdp/sgp_math.o `pkg-config --cflags --libs glib-2.0` -lm
 sgpsdp/sgp4sdp4.o: sgpsdp/sgp_math.o
 	gcc -c sgpsdp/sgp4sdp4.c -Wall -o sgpsdp/sgp4sdp4.o `pkg-config --cflags --libs glib-2.0` -lm
+predict-tools.o: sgpsdp/sgp4sdp4.o
+	gcc -c predict-tools.c -Wall -o predict-tools.o `pkg-config --cflags --libs glib-2.0`
 time-tools.o: sgpsdp/sgp4sdp4.o
 	gcc -c time-tools.c -Wall -o time-tools.o `pkg-config --cflags --libs glib-2.0`
 sgpsdp/test-001: libgpredict.a
@@ -21,7 +23,7 @@ sgpsdp/test-002: libgpredict.a
 run-tests: sgpsdp/test-001 sgpsdp/test-002
 	(cd sgpsdp; ./test-001; ./test-002)
 libgpredict.a: all-components
-	ar rcs libgpredict.a sgpsdp/sgp_time.o sgpsdp/sgp_math.o sgpsdp/sgp4sdp4.o sgpsdp/sgp_in.o sgpsdp/sgp_obs.o sgpsdp/solar.o time-tools.o
+	ar rcs libgpredict.a sgpsdp/sgp_time.o sgpsdp/sgp_math.o sgpsdp/sgp4sdp4.o sgpsdp/sgp_in.o sgpsdp/sgp_obs.o sgpsdp/solar.o predict-tools.o time-tools.o
 
 clean:
 	rm -f `find . | egrep '(\.o$$|\.a$$)'`
