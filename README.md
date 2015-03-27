@@ -22,7 +22,7 @@ library.
     make
     make install
 
-# test
+## test
 
     cd test
     mkdir build
