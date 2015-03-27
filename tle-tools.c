@@ -13,23 +13,22 @@
     More details can be found at the project home page:
 
             http://gpredict.oz9aec.net/
- 
+
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 2 of the License, or
     (at your option) any later version.
-  
+
     This program is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
-  
+
     You should have received a copy of the GNU General Public License
     along with this program; if not, visit http://www.fsf.org/
 */
 
 #include <glib.h>
-#include <glib/gi18n.h>
 #include "sgpsdp/sgp4sdp4.h"
 #include "sat-log.h"
 #ifdef HAVE_CONFIG_H
@@ -47,7 +46,7 @@
  *  \param checksum Flag indicating whether to perform checksum check.
  *  \param tle Pointer to a tle_t structure where the TLE data will be put.
  *  \return TLE_CONV_SUCCESS if the conversion is successful or TLE_CONV_ERROR
- *          if an error has occurred during the conversion. 
+ *          if an error has occurred during the conversion.
  *
  * This function converts NASA 2-line orbital element data (as read from a tle
  * file) into a tle_t structure, which is used all over in gpredict. Note that
