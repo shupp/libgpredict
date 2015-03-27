@@ -33,7 +33,6 @@
 #include "time-tools.h"
 
 
-
 /** \brief Initialise satellite data.
  *  \param sat The satellite to initialise.
  *  \param qth Optional QTH info, use (0,0) if NULL.

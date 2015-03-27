@@ -33,7 +33,6 @@
 #include "orbit-tools.h"
 
 
-
 orbit_type_t
 get_orbit_type (sat_t *sat)
 {

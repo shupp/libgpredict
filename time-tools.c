@@ -27,17 +27,8 @@
 */
 
 #include <glib.h>
-//#include <sys/time.h>
-#ifdef HAVE_CONFIG_H
-#  include <build-config.h>
-#endif
 #include "sgpsdp/sgp4sdp4.h"
 #include "time-tools.h"
-//#ifdef G_OS_WIN32
-//#  include "libc_internal.h"
-//#  include "libc_interface.h"
-//#endif
-
 
 
 /** \brief Get the current time.
@@ -48,43 +39,13 @@ gdouble
 get_current_daynum ()
 {
     struct tm utc;
-    //struct timeval tmval;
     GTimeVal tmval;
     double daynum;
 
     UTC_Calendar_Now (&utc);
-    //gettimeofday (&tmval, NULL);
     g_get_current_time (&tmval);
     daynum = Julian_Date (&utc);
     daynum = daynum + (double)tmval.tv_usec/8.64e+10;
 
     return daynum;
 }
-
-
-/* This function calculates the day number from m/d/y. */
-/* Legacy code no longer in use
-long
-get_daynum_from_dmy (int d, int m, int y)
-{
-
-    long dn;
-    double mm, yy;
-
-    if (m<3)
-    {
-        y--;
-        m+=12;
-    }
-
-    if (y<57)
-        y+=100;
-
-    yy=(double)y;
-    mm=(double)m;
-    dn=(long)(floor(365.25*(yy-80.0))-floor(19.0+yy/100.0)+floor(4.75+yy/400.0)-16.0);
-    dn+=d+30*m+(long)floor(0.6*mm-0.3);
-
-    return dn;
-}
-*/

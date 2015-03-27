@@ -34,7 +34,6 @@
 #include "gtk-sat-data.h"
 
 
-
 /** \brief Satellite visibility. */
 typedef enum {
      SAT_VIS_NONE = 0,     /*!< Unknown/undefined. */

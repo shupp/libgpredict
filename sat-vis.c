@@ -29,7 +29,6 @@
 #include "sgpsdp/sgp4sdp4.h"
 #include "gtk-sat-data.h"
 #include "sat-vis.h"
-/* #include "sat-cfg.h" */
 
 
 static gchar VIS2CHR[SAT_VIS_NUM] = { '-', 'V', 'D', 'E'};

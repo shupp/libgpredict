@@ -30,15 +30,10 @@
 
 #include <glib.h>
 #include "sgpsdp/sgp4sdp4.h"
-/* #ifdef HAVE_CONFIG_H
-#  include <build-config.h>
-#endif */
 #include "gtk-sat-data.h"
 #include "time-tools.h"
-/* #include "sat-cfg.h" */
 #include "orbit-tools.h"
 #include "predict-tools.h"
-/* #include "sat-log.h" */
 
 
 /** \brief SGP4SDP4 driver for doing AOS/LOS calculations.

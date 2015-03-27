@@ -31,9 +31,6 @@
 #include <glib.h>
 #include "sgpsdp/sgp4sdp4.h"
 #include "sat-log.h"
-#ifdef HAVE_CONFIG_H
-#  include <build-config.h>
-#endif
 #include "tle-tools.h"
 
 
