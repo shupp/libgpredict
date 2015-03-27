@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include "libgpredict.h"
+#include "../gpredict.h"
 
 char  tle_str[3][80];
 sat_t sat;
