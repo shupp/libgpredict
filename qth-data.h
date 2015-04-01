@@ -42,8 +42,6 @@ typedef struct {
      gint      alt;    /*!< Altitude above sea level in meters. */
      gchar    *qra;    /*!< QRA locator */
      gchar    *wx;     /*!< Weather station code (4 chars). */
-
-     GKeyFile *data;   /*!< Raw data from cfg file. */
 } qth_t;
 
 

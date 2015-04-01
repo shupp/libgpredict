@@ -64,11 +64,6 @@ qth_data_free (qth_t *qth)
         qth->wx = NULL;
     }
 
-    if (qth->data) {
-        g_key_file_free (qth->data);
-        qth->data = NULL;
-    }
-
     g_free (qth);
 }
 
