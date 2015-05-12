@@ -21,6 +21,7 @@ library.
     cmake ../
     make
     make install
+    sudo ldconfig # for linux
 
 ## test
 
