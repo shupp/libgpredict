@@ -47,7 +47,10 @@ INSTALL(FILES
         predict-tools.h
         qth-data.h
         sat-vis.h
-        sgpsdp/sgp4sdp4.h
         time-tools.h
         DESTINATION "include/gpredict"
+ )
+INSTALL(FILES
+        sgpsdp/sgp4sdp4.h
+        DESTINATION "include/gpredict/sgpsdp"
  )
