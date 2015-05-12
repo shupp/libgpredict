@@ -42,5 +42,12 @@ install (TARGETS gpredict
 
 INSTALL(FILES
         gpredict.h
+        gtk-sat-data.h
+        orbit-tools.h
+        predict-tools.h
+        qth-data.h
+        sat-vis.h
+        sgpsdp/sgp4sdp4.h
+        time-tools.h
         DESTINATION "include/gpredict"
  )
