@@ -1,6 +1,1 @@
-libgpredict.a
-sgpsdp/*.o
-sgpsdp/test-001
-sgpsdp/test-002
-iss-test
-*.o
+build

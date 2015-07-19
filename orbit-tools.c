@@ -13,26 +13,24 @@
     More details can be found at the project home page:
 
             http://gpredict.oz9aec.net/
- 
+
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 2 of the License, or
     (at your option) any later version.
-  
+
     This program is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
-  
+
     You should have received a copy of the GNU General Public License
     along with this program; if not, visit http://www.fsf.org/
 */
 
 #include <glib.h>
-#include <glib/gi18n.h>
 #include "sgpsdp/sgp4sdp4.h"
 #include "orbit-tools.h"
-
 
 
 orbit_type_t
@@ -92,13 +90,13 @@ gboolean
 decayed        (sat_t *sat)
 {
 
-     /* tle.xndt2o/(twopi/xmnpda/xmnpda) is the value before converted the 
+     /* tle.xndt2o/(twopi/xmnpda/xmnpda) is the value before converted the
         value matches up with the value in predict 2.2.3 */
-     /*** FIXME decayed is treated as a static quantity. 
-          It is time dependent. Also sat->jul_utc is often zero 
+     /*** FIXME decayed is treated as a static quantity.
+          It is time dependent. Also sat->jul_utc is often zero
           when this function is called
      ***/
-     if (sat->jul_epoch + ((16.666666 - sat->meanmo) / 
+     if (sat->jul_epoch + ((16.666666 - sat->meanmo) /
                            (10.0 * fabs (sat->tle.xndt2o/(twopi/xmnpda/xmnpda)))) < sat->jul_utc)
           return TRUE;
      else

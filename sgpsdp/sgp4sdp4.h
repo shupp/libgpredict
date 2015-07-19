@@ -22,7 +22,7 @@
 typedef enum {
 	ORBIT_TYPE_UNKNOWN = 0,
 	ORBIT_TYPE_LEO,            /*!< Low Earth orbit, up to 1200 km. */
-	ORBIT_TYPE_ICO,            /*!< Intermediate Circular Orbit, up to 1400 km. */ 
+	ORBIT_TYPE_ICO,            /*!< Intermediate Circular Orbit, up to 1400 km. */
 	ORBIT_TYPE_GEO,            /*!< Geostationary. */
 	ORBIT_TYPE_GSO,            /*!< Geosynchronuous. */
 	ORBIT_TYPE_MOLNIYA,
@@ -75,8 +75,8 @@ typedef struct {
 	double xincl1;
 	double xnodeo1;
 	double omegao1;
-} tle_t; 
-	
+} tle_t;
+
 
 /** \brief Geodetic position data structure.
  *  \ingroup sgpsdpif
@@ -165,11 +165,6 @@ typedef struct {
 	vector_t        pos;       /*!< Raw position and range */
 	vector_t        vel;       /*!< Raw velocity */
 
-	/*** FIXME: REMOVE */
-	obs_set_t       bearing;   /*!< Az, El, range and vel */
-	obs_astro_t     astro;     /*!< Ra and Decl */
-	/*** END */
-
 	/* time keeping fields */
 	double          jul_epoch;
 	double          jul_utc;
@@ -209,7 +204,7 @@ typedef struct {
 #define e6a      1.0E-6
 #define tothrd   6.6666667E-1    /* 2/3 */
 #define xj2      1.0826158E-3    /* J2 Harmonic */
-#define xj3     -2.53881E-6      /* J3 Harmonic */   
+#define xj3     -2.53881E-6      /* J3 Harmonic */
 #define xj4     -1.65597E-6      /* J4 Harmonic */
 #define xke      7.43669161E-2
 #define xkmper   6.378135E3      /* Earth radius km */
@@ -218,7 +213,7 @@ typedef struct {
 #define ck2      5.413079E-4
 #define ck4      6.209887E-7
 #define __f      3.352779E-3
-#define ge       3.986008E5 
+#define ge       3.986008E5
 #define __s__    1.012229
 #define qoms2t   1.880279E-09
 #define secday   8.6400E4        /* Seconds per day */
@@ -255,7 +250,7 @@ typedef struct {
 #define __sr__   6.96000E5      /*Solar radius - kilometers (IAU 76)*/
 #define AU       1.49597870E8   /*Astronomical unit - kilometers (IAU 76)*/
 
-/* Entry points of Deep() 
+/* Entry points of Deep()
 FIXME: Change to enu */
 #define dpinit   1 /* Deep-space initialization code */
 #define dpsec    2 /* Deep-space secular code        */

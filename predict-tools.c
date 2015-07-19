@@ -13,33 +13,27 @@
     More details can be found at the project home page:
 
             http://gpredict.oz9aec.net/
- 
+
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 2 of the License, or
     (at your option) any later version.
-  
+
     This program is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
-  
+
     You should have received a copy of the GNU General Public License
     along with this program; if not, visit http://www.fsf.org/
 */
 
 #include <glib.h>
-#include <glib/gi18n.h>
 #include "sgpsdp/sgp4sdp4.h"
-/* #ifdef HAVE_CONFIG_H
-#  include <build-config.h>
-#endif */
 #include "gtk-sat-data.h"
 #include "time-tools.h"
-/* #include "sat-cfg.h" */
 #include "orbit-tools.h"
 #include "predict-tools.h"
-/* #include "sat-log.h" */
 
 
 /** \brief SGP4SDP4 driver for doing AOS/LOS calculations.
@@ -135,7 +129,7 @@ find_aos (sat_t *sat, qth_t *qth, gdouble start, gdouble maxdt)
     predict_calc (sat, qth, start);
 
     /* check whether satellite has aos */
-    if ((sat->otype == ORBIT_TYPE_GEO) || 
+    if ((sat->otype == ORBIT_TYPE_GEO) ||
         (sat->otype == ORBIT_TYPE_DECAYED) ||
         !has_aos (sat, qth)) {
 
@@ -234,7 +228,7 @@ find_los (sat_t *sat, qth_t *qth, gdouble start, gdouble maxdt)
     predict_calc (sat, qth, start);
 
     /* check whether satellite has aos */
-    if ((sat->otype == ORBIT_TYPE_GEO) || 
+    if ((sat->otype == ORBIT_TYPE_GEO) ||
         (sat->otype == ORBIT_TYPE_DECAYED) ||
         !has_aos (sat, qth)) {
 
@@ -265,10 +259,10 @@ find_los (sat_t *sat, qth_t *qth, gdouble start, gdouble maxdt)
 
         /* fine steps */
         while ((lostime == 0.0) && (t <= (start + maxdt)))  {
-            
+
             t += sat->el * sqrt(sat->alt)/502500.0;
             predict_calc (sat, qth, t);
-            
+
             if (fabs(sat->el) < 0.005)
                 lostime = t;
         }
@@ -285,10 +279,10 @@ find_los (sat_t *sat, qth_t *qth, gdouble start, gdouble maxdt)
 
         /* fine steps */
         while (lostime == 0.0) {
-            
+
             t += sat->el * sqrt(sat->alt)/502500.0;
             predict_calc (sat, qth, t);
-            
+
             if (fabs(sat->el) < 0.005)
                 lostime = t;
         }
@@ -320,7 +314,7 @@ find_prev_aos (sat_t *sat, qth_t *qth, gdouble start)
     predict_calc (sat, qth, start);
 
     /* check whether satellite has aos */
-    if ((sat->otype == ORBIT_TYPE_GEO) || 
+    if ((sat->otype == ORBIT_TYPE_GEO) ||
         (sat->otype == ORBIT_TYPE_DECAYED) ||
         !has_aos (sat, qth)) {
 
@@ -491,7 +485,7 @@ get_pass   (sat_t *sat_in, qth_t *qth, gdouble start, gdouble maxdt)
 
             /* create a pass_t entry; FIXME: g_try_new in 2.8 */
             pass = g_new (pass_t, 1);
-            
+
             pass->aos = aos;
             pass->los = los;
             pass->max_el = 0.0;
@@ -507,7 +501,7 @@ get_pass   (sat_t *sat_in, qth_t *qth, gdouble start, gdouble maxdt)
 
             /* iterate over each time step */
             for (t = pass->aos; t <= pass->los; t += step) {
-            
+
                 /* calculate satellite data */
                 predict_calc (sat, qth, t);
 
@@ -693,7 +687,7 @@ copy_pass         (pass_t *pass)
         new->vis[2] = pass->vis[2];
         new->vis[3] = pass->vis[3];
         new->details = copy_pass_details (pass->details);
-        
+
         if (pass->satname != NULL)
             new->satname = g_strdup (pass->satname);
         else
@@ -713,7 +707,7 @@ copy_pass_details (GSList *details)
 
     n = g_slist_length (details);
     for (i = 0; i < n; i++) {
-        new = g_slist_prepend (new, 
+        new = g_slist_prepend (new,
                         copy_pass_detail (PASS_DETAIL (g_slist_nth_data (details, i))));
     }
 
@@ -765,12 +759,12 @@ free_pass   (pass_t *pass)
 {
      if (pass!=NULL){
      free_pass_details (pass->details);
-     
+
      if (pass->satname != NULL) {
           g_free (pass->satname);
           pass->satname = NULL;
      }
-     
+
      g_free (pass);
      pass = NULL;
      } else {
@@ -924,7 +918,7 @@ get_pass_no_min_el (sat_t *sat_in, qth_t *qth, gdouble start, gdouble maxdt)
 
         /* create a pass_t entry; FIXME: g_try_new in 2.8 */
         pass = g_new (pass_t, 1);
-            
+
         pass->aos = aos;
         pass->los = los;
         pass->max_el = 0.0;
@@ -940,7 +934,7 @@ get_pass_no_min_el (sat_t *sat_in, qth_t *qth, gdouble start, gdouble maxdt)
 
         /* iterate over each time step */
         for (t = pass->aos; t <= pass->los; t += step) {
-            
+
             /* calculate satellite data */
             predict_calc (sat, qth, t);
 
@@ -991,7 +985,7 @@ get_pass_no_min_el (sat_t *sat_in, qth_t *qth, gdouble start, gdouble maxdt)
             default:
                 break;
             }
-            
+
             pass->details = g_slist_prepend (pass->details, detail);
 
             /* store elevation if greater than the
@@ -1045,7 +1039,7 @@ get_current_pass (sat_t *sat_in, qth_t *qth, gdouble start)
 {
     gdouble t;
     sat_t  *sat,sat_working;
-    
+
     /*copy sat_in to a working structure*/
     sat = memcpy(&sat_working,sat_in,sizeof(sat_t));
 
@@ -1053,15 +1047,15 @@ get_current_pass (sat_t *sat_in, qth_t *qth, gdouble start)
         t = start;
     else
         t = get_current_daynum ();
-    predict_calc (sat, qth, t);     
+    predict_calc (sat, qth, t);
 
      /* check whether satellite has aos */
-    if ((sat->otype == ORBIT_TYPE_GEO) || 
+    if ((sat->otype == ORBIT_TYPE_GEO) ||
         (sat->otype == ORBIT_TYPE_DECAYED) ||
           !has_aos (sat, qth)) {
-          
+
         return NULL;
-          
+
     }
 
     /* find a time before AOS */

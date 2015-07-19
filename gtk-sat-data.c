@@ -11,28 +11,26 @@
   More details can be found at the project home page:
 
   http://gpredict.oz9aec.net/
- 
+
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
   the Free Software Foundation; either version 2 of the License, or
   (at your option) any later version.
-  
+
   This program is distributed in the hope that it will be useful,
   but WITHOUT ANY WARRANTY; without even the implied warranty of
   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
   GNU General Public License for more details.
-  
+
   You should have received a copy of the GNU General Public License
   along with this program; if not, visit http://www.fsf.org/
 */
 
 #include <glib.h>
-#include <glib/gi18n.h>
 #include "sgpsdp/sgp4sdp4.h"
 #include "gtk-sat-data.h"
 #include "orbit-tools.h"
 #include "time-tools.h"
-
 
 
 /** \brief Initialise satellite data.
@@ -86,7 +84,7 @@ gtk_sat_data_init_sat (sat_t *sat, qth_t *qth)
 
     while (sat_geodetic.lon < -pi)
         sat_geodetic.lon += twopi;
-    
+
     while (sat_geodetic.lon > (pi))
         sat_geodetic.lon -= twopi;
 
@@ -182,7 +180,7 @@ void gtk_sat_data_copy_sat (const sat_t *source, sat_t *dest, qth_t *qth)
 
 /** \brief Free satellite data
  *  \param sat Pointer to the satellite data to free
- * 
+ *
  * This function frees the memory that has been dyunamically allocated
  * when creating a new satellite object.
  */
@@ -202,7 +200,7 @@ void gtk_sat_data_free_sat(sat_t *sat)
                g_free(sat->website);
                sat->website=NULL;
           }
-        
+
           g_free(sat);
      }
 }
